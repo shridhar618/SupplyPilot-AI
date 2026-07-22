@@ -1,0 +1,645 @@
+.page-container {
+  padding: 0;
+  min-height: 100vh;
+}
+
+.page-header {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  color: #1a202c;
+}
+
+.page-description {
+  margin: 0;
+  color: #718096;
+  font-size: 1rem;
+}
+
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  background-color: #4299e1;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #3182ce;
+}
+
+.btn-secondary {
+  background-color: #edf2f7;
+  color: #2d3748;
+  border: 1px solid #cbd5e0;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #4299e1;
+  border: 1px solid #4299e1;
+}
+
+.btn-outline:hover {
+  background-color: #ebf8ff;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.welcome-message {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.welcome-message h2 {
+  margin-top: 0;
+  color: #2d3748;
+}
+
+.placeholder-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.placeholder-item {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.placeholder-item h3 {
+  margin-top: 0;
+  color: #2d3748;
+  font-size: 1.25rem;
+}
+
+.placeholder-item p {
+  color: #718096;
+  margin-bottom: 0;
+}
+
+.forecast-overview, .supply-chain-overview {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.forecast-overview h2, .supply-chain-overview h2 {
+  margin-top: 0;
+}
+
+.forecast-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.forecast-card {
+  background: #f7fafc;
+  border-radius: 0.375rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.forecast-card h3 {
+  margin-top: 0;
+  color: #2d3748;
+}
+
+.forecast-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4299e1;
+  margin: 0.5rem 0;
+}
+
+.forecast-period {
+  color: #718096;
+  font-size: 0.875rem;
+}
+
+.model-info {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.chart-section {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+}
+
+.chart-section h2 {
+  margin-top: 0;
+}
+
+.chart-placeholder {
+  height: 300px;
+  background: #f7fafc;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.sc-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.metric-card h3 {
+  margin-top: 0;
+  color: #4a5568;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d3748;
+  margin: 0.5rem 0;
+}
+
+.change-indicator {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.change-indicator.positive {
+  color: #38a169;
+}
+
+.change-indicator.negative {
+  color: #e53e3e;
+}
+
+.change-indicator.stable {
+  color: #dd6b20;
+}
+
+.suppliers-section, .purchase-orders-section, .logistics-section {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.suppliers-section h2, .purchase-orders-section h2, .logistics-section h2 {
+  margin-top: 0;
+}
+
+.suppliers-table, .po-table {
+  overflow-x: auto;
+}
+
+.table-header, .table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table-header {
+  font-weight: 600;
+  color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.th, .td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.low {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.status.medium {
+  background-color: #feebc8;
+  color: #9c4221;
+}
+
+.status.high {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.status.delivered {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.status.in-transit {
+  background-color: #bee3f8;
+  color: #2a4365;
+}
+
+.status.processing {
+  background-color: #faf089;
+  color: #744210;
+}
+
+.po-value {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.logistics-map {
+  height: 400px;
+  background: #f7fafc;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.create-promotion-section {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.create-promotion-section h2 {
+  margin-top: 0;
+}
+
+.promotion-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.form-input, .form-select {
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.25);
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.promotion-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.promotion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: #edf2f7;
+}
+
+.promotion-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.scheduled {
+  background-color: #bee3f8;
+  color: #2a4365;
+}
+
+.status.active {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.status.expired {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.promotion-details {
+  padding: 1.25rem 1.5rem;
+}
+
+.promotion-details p {
+  margin: 0.5rem 0;
+}
+
+.promotion-details p strong {
+  color: #2d3748;
+}
+
+.promotion-metrics {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: #f7fafc;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.75rem;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.metric p {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.promotion-actions {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.promotion-actions .btn-sm {
+  padding: 0.5rem 1rem;
+}
+
+.forecast-accuracy-card, .inventory-turnover-card, .stockout-incidents-card, .sales-trend-card {
+  background: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.forecast-accuracy-card .card-header, .inventory-turnover-card .card-header,
+.stockout-incidents-card .card-header, .sales-trend-card .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: #f7fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.forecast-accuracy-card .card-header .left,
+.inventory-turnover-card .card-header .left,
+.stockout-incidents-card .card-header .left,
+.sales-trend-card .card-header .left {
+  display: flex;
+  align-items: center;
+}
+
+.forecast-accuracy-card .card-header .left p:first-child,
+.inventory-turnover-card .card-header .left p:first-child,
+.stockout-incidents-card .card-header .left p:first-child,
+.sales-trend-card .card-header .left p:first-child {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.875rem;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.forecast-accuracy-card .card-header .left p:last-child,
+.inventory-turnover-card .card-header .left p:last-child,
+.stockout-incidents-card .card-header .left p:last-child,
+.sales-trend-card .card-header .left p:last-child {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.forecast-accuracy-card .card-header .right,
+.inventory-turnover-card .card-header .right,
+.stockout-incidents-card .card-header .right,
+.sales-trend-card .card-header .right {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forecast-accuracy-card .card-header .right {
+  background-color: #bee3f8;
+  color: #2a4365;
+}
+
+.inventory-turnover-card .card-header .right {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.stockout-incidents-card .card-header .right {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.sales-trend-card .card-header .right {
+  background-color: #feebc8;
+  color: #9c4221;
+}
+
+.forecast-accuracy-card .card-body,
+.inventory-turnover-card .card-body,
+.stockout-incidents-card .card-body,
+.sales-trend-card .card-body {
+  padding: 1.25rem 1.5rem;
+}
+
+.trend-indicator {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.trend-indicator.positive {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.trend-indicator.negative {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.activity-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-icon.bg-indigo-100 {
+  background-color: #ebf8ff;
+  color: #2a4365;
+}
+
+.activity-icon.bg-green-100 {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.activity-icon.bg-red-100 {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.activity-icon.bg-yellow-100 {
+  background-color: #feebc8;
+  color: #9c4221;
+}
+
+.activity-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-text .font-medium {
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.activity-text .text-sm {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.activity-trend {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.activity-trend.positive {
+  background-color: #c6f6d5;
+  color: #22543d;
+}

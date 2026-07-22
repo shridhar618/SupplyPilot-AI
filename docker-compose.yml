@@ -1,0 +1,243 @@
+version: '3.8'
+
+services:
+  # Infrastructure Services
+  postgres:
+    image: postgres:15
+    container_name: supplypilot-postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: supplypilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - supplypilot-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: supplypilot-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - supplypilot-network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: supplypilot-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - supplypilot-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: supplypilot-kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - supplypilot-network
+
+  # Microservices
+  api-gateway:
+    build: ./services/api-gateway
+    container_name: supplypilot-api-gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/api-gateway:/app
+
+  data-ingestion:
+    build: ./services/data-ingestion
+    container_name: supplypilot-data-ingestion
+    ports:
+      - "8001:8001"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/data-ingestion:/app
+
+  demand-forecasting:
+    build: ./services/demand-forecasting
+    container_name: supplypilot-demand-forecasting
+    ports:
+      - "8002:8002"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/demand-forecasting:/app
+
+  user-management:
+    build: ./services/user-management
+    container_name: supplypilot-user-management
+    ports:
+      - "8003:8003"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/user-management:/app
+
+  product-catalog:
+    build: ./services/product-catalog
+    container_name: supplypilot-product-catalog
+    ports:
+      - "8004:8004"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/product-catalog:/app
+
+  supply-chain-resilience:
+    build: ./services/supply-chain-resilience
+    container_name: supplypilot-supply-chain-resilience
+    ports:
+      - "8006:8006"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/supply-chain-resilience:/app
+
+  inventory-optimization:
+    build: ./services/inventory-optimization
+    container_name: supplypilot-inventory-optimization
+    ports:
+      - "8005:8005"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/inventory-optimization:/app
+
+  promotion-pricing:
+    build: ./services/promotion-pricing
+    container_name: supplypilot-promotion-pricing
+    ports:
+      - "8007:8007"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/promotion-pricing:/app
+
+  collaboration-workflow:
+    build: ./services/collaboration-workflow
+    container_name: supplypilot-collaboration-workflow
+    ports:
+      - "8008:8008"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/collaboration-workflow:/app
+
+  data-warehouse:
+    build: ./services/data-warehouse
+    container_name: supplypilot-data-warehouse
+    ports:
+      - "8009:8009"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/data-warehouse:/app
+
+  explainable-ai:
+    build: ./services/explainable-ai
+    container_name: supplypilot-explainable-ai
+    ports:
+      - "8010:8010"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/explainable-ai:/app
+
+  monitoring-alerting:
+    build: ./services/monitoring-alerting
+    container_name: supplypilot-monitoring-alerting
+    ports:
+      - "8011:8011"
+    environment:
+      - ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/supplypilot
+    depends_on:
+      - postgres
+    networks:
+      - supplypilot-network
+    volumes:
+      - ./services/monitoring-alerting:/app
+
+networks:
+  supplypilot-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

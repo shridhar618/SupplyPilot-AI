@@ -1,0 +1,13 @@
+# Data Ingestion Service Requirements
+pandas==2.1.3
+numpy==1.25.2
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+redis==4.6.11
+kafka-python==2.0.2
+requests==2.31.0
+openpyxl==3.1.2
+xlrd==2.0.1
+fastavro==1.8.5
+apache-airflow==2.7.2
+apache-airflow-providers-postgres==5.5.0
