@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './pages.css';
 
 const Inventory = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="page-container">
       <div className="page-header">
@@ -13,8 +16,12 @@ const Inventory = () => {
 
       <div className="content-section">
         <div className="action-buttons">
-          <button className="btn btn-primary">Run Optimization</button>
-          <button className="btn btn-secondary">View Inventory Levels</button>
+          <button className="btn btn-primary" onClick={() => navigate('/inventory/optimize')}>
+            Run Optimization
+          </button>
+          <button className="btn btn-secondary" onClick={() => navigate('/inventory/levels')}>
+            View Inventory Levels
+          </button>
         </div>
 
         <div className="inventory-summary">
@@ -58,8 +65,12 @@ const Inventory = () => {
                 Based on demand forecast (avg 8.2 units/day) and 7-day lead time
               </p>
               <div className="recommendation-actions">
-                <button className="btn btn-sm btn-outline">Create PO</button>
-                <button className="btn btn-sm btn-outline">View Details</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/inventory/recommendations/xyz-123/create-po')}>
+                  Create PO
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/inventory/recommendations/xyz-123/details')}>
+                  View Details
+                </button>
               </div>
             </div>
             <div className="recommendation-item">
@@ -74,8 +85,12 @@ const Inventory = () => {
                 Sufficient stock for next 18 days based on current demand
               </p>
               <div className="recommendation-actions">
-                <button className="btn btn-sm btn-outline">Create PO</button>
-                <button className="btn btn-sm btn-outline">View Details</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/inventory/recommendations/abc-456/create-po')}>
+                  Create PO
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/inventory/recommendations/abc-456/details')}>
+                  View Details
+                </button>
               </div>
             </div>
           </div>

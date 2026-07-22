@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './pages.css';
 
 const Forecasting = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="page-container">
       <div className="page-header">
@@ -13,8 +16,12 @@ const Forecasting = () => {
 
       <div className="content-section">
         <div className="action-buttons">
-          <button className="btn btn-primary">Generate New Forecast</button>
-          <button className="btn btn-secondary">View Forecast History</button>
+          <button className="btn btn-primary" onClick={() => navigate('/forecasting/generate')}>
+            Generate New Forecast
+          </button>
+          <button className="btn btn-secondary" onClick={() => navigate('/forecasting/history')}>
+            View Forecast History
+          </button>
         </div>
 
         <div className="forecast-overview">

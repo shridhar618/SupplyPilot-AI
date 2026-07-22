@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './pages.css';
 
 const SupplyChain = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="page-container">
       <div className="page-header">
@@ -13,8 +16,12 @@ const SupplyChain = () => {
 
       <div className="content-section">
         <div className="action-buttons">
-          <button className="btn btn-primary">Add New Supplier</button>
-          <button className="btn btn-secondary">View Purchase Orders</button>
+          <button className="btn btn-primary" onClick={() => navigate('/supply-chain/suppliers/add')}>
+            Add New Supplier
+          </button>
+          <button className="btn btn-secondary" onClick={() => navigate('/supply-chain/purchase-orders')}>
+            View Purchase Orders
+          </button>
         </div>
 
         <div className="supply-chain-overview">
@@ -61,8 +68,12 @@ const SupplyChain = () => {
               <div className="td">7</div>
               <div className="td status low">Low</div>
               <div className="td actions">
-                <button className="btn btn-sm btn-outline">View</button>
-                <button className="btn btn-sm btn-outline">Contact</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/suppliers/abc-supplies')}>
+                  View
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/suppliers/abc-supplies/contact')}>
+                  Contact
+                </button>
               </div>
             </div>
             <div className="table-row">
@@ -72,8 +83,12 @@ const SupplyChain = () => {
               <div className="td">14</div>
               <div className="td status medium">Medium</div>
               <div className="td actions">
-                <button className="btn btn-sm btn-outline">View</button>
-                <button className="btn btn-sm btn-outline">Contact</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/suppliers/xyz-manufacturing')}>
+                  View
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/suppliers/xyz-manufacturing/contact')}>
+                  Contact
+                </button>
               </div>
             </div>
             <div className="table-row">
@@ -83,8 +98,12 @@ const SupplyChain = () => {
               <div className="td">5</div>
               <div className="td status low">Low</div>
               <div className="td actions">
-                <button className="btn btn-sm btn-outline">View</button>
-                <button className="btn btn-sm btn-outline">Contact</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/suppliers/global-logistics')}>
+                  View
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/suppliers/global-logistics/contact')}>
+                  Contact
+                </button>
               </div>
             </div>
           </div>
@@ -110,8 +129,12 @@ const SupplyChain = () => {
               <div className="td status delivered">Delivered</div>
               <div className="td">$12,450.00</div>
               <div className="td actions">
-                <button className="btn btn-sm btn-outline">View</button>
-                <button className="btn btn-sm btn-outline">Reorder</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/purchase-orders/PO-2024-0845')}>
+                  View
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/purchase-orders/PO-2024-0845/reorder')}>
+                  Reorder
+                </button>
               </div>
             </div>
             <div className="table-row">
@@ -122,8 +145,12 @@ const SupplyChain = () => {
               <div className="td status in-transit">In Transit</div>
               <div className="td">$8,920.00</div>
               <div className="td actions">
-                <button className="btn btn-sm btn-outline">View</button>
-                <button className="btn btn-sm btn-outline">Track</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/purchase-orders/PO-2024-0846')}>
+                  View
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/purchase-orders/PO-2024-0846/track')}>
+                  Track
+                </button>
               </div>
             </div>
             <div className="table-row">
@@ -134,8 +161,12 @@ const SupplyChain = () => {
               <div className="td status processing">Processing</div>
               <div className="td">$15,780.00</div>
               <div className="td actions">
-                <button className="btn btn-sm btn-outline">View</button>
-                <button className="btn btn-sm btn-outline">Edit</button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/purchase-orders/PO-2024-0847')}>
+                  View
+                </button>
+                <button className="btn btn-sm btn-outline" onClick={() => navigate('/purchase-orders/PO-2024-0847/edit')}>
+                  Edit
+                </button>
               </div>
             </div>
           </div>

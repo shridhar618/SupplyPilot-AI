@@ -28,6 +28,7 @@
   padding: 0 1.5rem;
 }
 
+/* Action Buttons */
 .action-buttons {
   display: flex;
   gap: 1rem;
@@ -35,50 +36,92 @@
   flex-wrap: wrap;
 }
 
-.btn {
-  padding: 0.75rem 1.5rem;
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: white;
   border-radius: 0.375rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
   transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.metric-card h3 {
+  margin-top: 0;
+  color: #4a5568;
   font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.btn-primary {
-  background-color: #4299e1;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #3182ce;
-}
-
-.btn-secondary {
-  background-color: #edf2f7;
+.metric-value {
+  font-size: 2rem;
+  font-weight: bold;
   color: #2d3748;
-  border: 1px solid #cbd5e0;
+  margin: 0.5rem 0;
 }
 
-.btn-secondary:hover {
-  background-color: #e2e8f0;
+.change-indicator {
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-.btn-outline {
-  background-color: transparent;
-  color: #4299e1;
-  border: 1px solid #4299e1;
+.change-indicator.positive {
+  color: #38a169;
 }
 
-.btn-outline:hover {
-  background-color: #ebf8ff;
+.change-indicator.negative {
+  color: #e53e3e;
 }
 
-.btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
+.change-indicator.stable {
+  color: #dd6b20;
 }
 
+.change-indicator.positive::before {
+  content: "▲ ";
+}
+
+.change-indicator.negative::before {
+  content: "▼ ";
+}
+
+/* Chart Sections */
+.forecast-overview, .supply-chain-overview {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.forecast-overview h2, .supply-chain-overview h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+  font-size: 1.5rem;
+}
+
+.chart-section {
+  background: #f7fafc;
+  border-radius: 0.375rem;
+  padding: 1rem;
+}
+
+/* Existing styles for other components (keep them) */
 .welcome-message {
   background: white;
   border-radius: 0.5rem;
@@ -117,18 +160,7 @@
   margin-bottom: 0;
 }
 
-.forecast-overview, .supply-chain-overview {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.forecast-overview h2, .supply-chain-overview h2 {
-  margin-top: 0;
-}
-
+/* Forecast Overview specific styles (if needed) */
 .forecast-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -166,28 +198,7 @@
   font-style: italic;
 }
 
-.chart-section {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-}
-
-.chart-section h2 {
-  margin-top: 0;
-}
-
-.chart-placeholder {
-  height: 300px;
-  background: #f7fafc;
-  border-radius: 0.375rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #a0aec0;
-  font-style: italic;
-}
-
+/* SCM specific styles */
 .sc-metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -195,46 +206,7 @@
   margin: 1.5rem 0;
 }
 
-.metric-card {
-  background: white;
-  border-radius: 0.375rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.metric-card h3 {
-  margin-top: 0;
-  color: #4a5568;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.metric-value {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #2d3748;
-  margin: 0.5rem 0;
-}
-
-.change-indicator {
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.change-indicator.positive {
-  color: #38a169;
-}
-
-.change-indicator.negative {
-  color: #e53e3e;
-}
-
-.change-indicator.stable {
-  color: #dd6b20;
-}
-
+/* Suppliers, POs, Logistics sections */
 .suppliers-section, .purchase-orders-section, .logistics-section {
   background: white;
   border-radius: 0.5rem;
@@ -324,6 +296,7 @@
   font-style: italic;
 }
 
+/* Promotion styles */
 .create-promotion-section {
   background: white;
   border-radius: 0.5rem;
@@ -341,17 +314,6 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #2d3748;
 }
 
 .form-input, .form-select {
@@ -462,10 +424,65 @@
   gap: 0.75rem;
 }
 
-.promotion-actions .btn-sm {
-  padding: 0.5rem 1rem;
+/* Button Styles */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.375rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #64748b;
+  border-color: #64748b;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #475569;
+  border-color: #475569;
+}
+
+.btn-outline {
+  color: #2563eb;
+  background-color: transparent;
+  border-color: #2563eb;
+}
+
+.btn-outline:hover {
+  color: #fff;
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Forecast accuracy, inventory turnover, etc. cards */
 .forecast-accuracy-card, .inventory-turnover-card, .stockout-incidents-card, .sales-trend-card {
   background: white;
   border-radius: 0.375rem;
@@ -543,15 +560,47 @@
   color: #9c4221;
 }
 
-.forecast-accuracy-card .card-body,
-.inventory-turnover-card .card-body,
-.stockout-incidents-card .card-body,
-.sales-trend-card .card-body {
-  padding: 1.25rem 1.5rem;
+/* Form Styles */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
-.trend-indicator {
-  display: inline-block;
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.form-input,
+.form-select {
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Priority Tags */
+.priority {
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.75rem;
@@ -559,79 +608,45 @@
   text-transform: uppercase;
 }
 
-.trend-indicator.positive {
-  background-color: #c6f6d5;
-  color: #22543d;
-}
-
-.trend-indicator.negative {
+.priority.high {
   background-color: #fed7d7;
   color: #9b2c2c;
 }
 
-.activity-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.activity-item:last-child {
-  border-bottom: none;
-}
-
-.activity-content {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.activity-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.activity-icon.bg-indigo-100 {
-  background-color: #ebf8ff;
-  color: #2a4365;
-}
-
-.activity-icon.bg-green-100 {
-  background-color: #c6f6d5;
-  color: #22543d;
-}
-
-.activity-icon.bg-red-100 {
-  background-color: #fed7d7;
-  color: #9b2c2c;
-}
-
-.activity-icon.bg-yellow-100 {
+.priority.medium {
   background-color: #feebc8;
   color: #9c4221;
 }
 
-.activity-text {
-  display: flex;
-  flex-direction: column;
+.priority.low {
+  background-color: #c6f6d5;
+  color: #22543d;
 }
 
-.activity-text .font-medium {
-  font-weight: 500;
+/* Table Components */
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table-header {
+  font-weight: 600;
   color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
 }
 
-.activity-text .text-sm {
-  font-size: 0.75rem;
-  color: #718096;
+.th,
+.td {
+  padding: 0.5rem;
+  text-align: left;
 }
 
-.activity-trend {
+/* Status Badges */
+.status {
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.75rem;
@@ -639,7 +654,85 @@
   text-transform: uppercase;
 }
 
-.activity-trend.positive {
+.status.active {
   background-color: #c6f6d5;
   color: #22543d;
 }
+
+.status.scheduled {
+  background-color: #bee3f8;
+  color: #2a4365;
+}
+
+.status.processing {
+  background-color: #faf089;
+  color: #744210;
+}
+
+.status.in-transit {
+  background-color: #bee3f8;
+  color: #2a4365;
+}
+
+.status.delivered {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.status.low {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.status.medium {
+  background-color: #feebc8;
+  color: #9c4221;
+}
+
+.status.high {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.status.stable {
+  color: #dd6b20;
+}
+
+/* Miscellaneous Components */
+.chart-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+  font-style: italic;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logistics-map {
+  height: 400px;
+  background: #f7fafc;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+/* Inventory Summary Cards */
+.summary-card {
+  background: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.summary-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d3748;
+  margin: 0.5rem 0;
+}}
+/* Inventory Styles */
