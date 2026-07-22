@@ -172,3 +172,7 @@ kustomize
 # Misc
 .DS_Store
 Thumbs.db
+# Frontend specific
+frontend/node_modules/
+frontend/package-lock.json
+frontend/.env

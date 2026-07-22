@@ -30,7 +30,7 @@ apiClient.interceptors.response.use(
   (error) => {
     // Handle common errors like 401 (unauthorized) or 403 (forbidden)
     if (error.response) {
-      if (event.response.status === 401) {
+      if (error.response.status === 401) {
         // Redirect to login or refresh token
         // For now, we'll just log it
         console.warn('Unauthorized access');

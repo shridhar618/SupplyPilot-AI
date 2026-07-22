@@ -9,168 +9,9 @@ from datetime import datetime, timedelta
 from typing import List, Optional, Dict, Any
 import numpy as np
 import pandas as pd
-from fastapi import FastAPI, Depends, HTTPException, Background Tasks, status, BackgroundTasks, Query
-from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import create_engine, Column, String, Boolean, DateTime, Text, Integer, ForeignKey, Numeric, func
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, Session, relationship
-from sqlalchemy.dialects.postgresql import UUID, JSONB
-from pydantic import BaseModel, Field
-import uuid
-import statsmodels.api as sm
-from statsmodels.tsa.arima.model import ARIMA
-from prophet import Prophet
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-import warnings
-warnings.filterwarnings("ignore")
-
-# Initialize FastAPI app
-app = FastAPI(
-    title="Demand Forecasting Service",
-    description="AI-powered demand forecasting service for DemandSense AI",
-    version="0.1.0"
-)
-
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Configure appropriately for production
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Configuration
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost/demandsense")
-
-# Database setup
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
-
-# Database Models (reflecting existing tables or defining new ones if needed)
-# We'll define the models we need for this service
-class Product(Base):
-    __tablename__ = "products"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    sku = Column(String(50), unique=True, nullable=False)
-    name = Column(String(255), nullable=False)
-    # ... other fields as needed for this service
-
-class InventoryLocation(Base):
-    __tablename__ = "inventory_locations"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    name = Column(String(100), nullable=False)
-    # ... other fields
-
-class DemandForecast(Base):
-    __tablename__ = "demand_forecasts"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    product_id = Column(UUID(as_uuid=True), ForeignKey("products.id"), nullable=False)
-    location_id = Column(UUID(as_uuid=True), ForeignKey("inventory_locations.id"), nullable=False)
-    forecast_date = Column(DateTime, nullable=False)
-    forecast_horizon = Column(Integer, nullable=False)
-    predicted_demand = Column(Numeric(precision=10, scale=3), nullable=False)
-    confidence_lower = Column(Numeric(precision=10, scale=3), nullable=True)
-    confidence_upper = Column(Numeric(precision=10, scale=3), nullable=True)
-    model_used = Column(String(50), nullable=True)
-    model_version = Column(String(20), nullable=True)
-    actual_demand = Column(Numeric(precision=10, scale=3), nullable=True)
-    forecast_error = Column(Numeric(precision=10, scale=3), nullable=True)
-    created_at = Column(DateTime, server_default=func.now())
-    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
-
-# Create tables (if they don't exist)
-Base.metadata.create_all(bind=engine)
-
-# Pydantic Models
-class ForecastRequest(BaseModel):
-    product_ids: List[str]
-    location_ids: List[str]
-    forecast_horizon: int = 30  # days
-    model_type: str = "ensemble"  # prophet, xgboost, lstm, ensemble
-    include_external_factors: bool = False
-
-class ForecastResponse(BaseModel):
-    forecast_id: str
-    product_id: str
-    location_id: str
-    forecast_date: datetime
-    forecast_horizon: int
-    predicted_demand: float
-    confidence_lower: Optional[float]
-    confidence_upper: Optional[float]
-    model_used: str
-    created_at: datetime
-
-class ForecastListResponse(BaseModel):
-    forecasts: List[ForecastResponse]
-    total: int
-    page: int
-    limit: int
-
-class ModelTrainRequest(BaseModel):
-    product_ids: List[str]
-    location_ids: List[str]
-    model_types: List[str] = ["prophet", "xgboost", "lstm"]
-    training_start_date: datetime
-    training_end_date: datetime
-    validation_start_date: datetime
-    validation_end_date: datetime
-
-class ModelTrainResponse(BaseModel):
-    message: str
-    model_ids: List[str]
-
-class ForecastAccuracyResponse(BaseModel):
-    product_id: str
-    location_id: str
-    mae: float
-    rmse: float
-    mape: float
-    accuracy: float
-    model_used: str
-    evaluated_at: datetime
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-# Helper functions for forecasting models
-def prepare_time_series(data: pd.DataFrame, date_col: str, value_col: str) -> pd.DataFrame:
-    """Prepare data for time series forecasting"""
-    df = data.copy()
-    df[date_col] = pd.to_datetime(df[date_col])
-    df = df.set_index(date_col).asfreq('D')  # Daily frequency
-    df = df.fillna(method='ffill').fillna(method='bfill')
-    return df[[value_col]]
-
-def forecast_arima(data: pd.DataFrame, steps: int = 30) -> tuple:
-    """Simple ARIMA forecast"""
-    try:
-        model = ARIAAI'm sorry, but the response was cut off. Let me try to provide a complete and concise version of the demand forecasting service implementation.
-<tool_call>
-<function=Write>
-<parameter=content>
-"""
-Demand Forecasting Service for SupplyPilot AI
-Handles demand forecasting using various models (Prophet, XGBoost, LSTM, etc.)
-"""
-import os
-import logging
-import json
-from datetime import datetime, timedelta
-from typing import List, Optional, Dict, Any
-import numpy as np
-import pandas as pd
 from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks, Query
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import create_column, Column, String, Boolean, DateTime, Text, Integer, ForeignKey, Numeric, func
+from sqlalchemy import create_engine, Column, String, Boolean, DateTime, Text, Integer, ForeignKey, Numeric, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session, relationship
 from sqlalchemy.dialects.postgresql import UUID, JSONB
@@ -316,7 +157,7 @@ def forecast_arima(data: pd.DataFrame, steps: int = 30) -> tuple:
         forecast = np.full(steps, last_value)
         conf_low = np.full(steps, last_value * 0.8)
         conf_high = np.full(steps, last_value * 1.2)
-        return forecast, conf_low, config_high
+        return forecast, conf_low, conf_high
 
 def forecast_prophet(data: pd.DataFrame, steps: int = 30) -> tuple:
     """Prophet forecast"""

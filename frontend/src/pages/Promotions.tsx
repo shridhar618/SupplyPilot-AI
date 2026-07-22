@@ -1,5 +1,5 @@
 import React from 'react';
-import '../pages.css';
+import './pages.css';
 
 const Promotions = () => {
   return (
@@ -89,7 +89,7 @@ const Promotions = () => {
                 <h4>Expected Lift</h4>
                 <p>+45%</p>
               </div>
-              <div classClassName="metric">
+              <div className="metric">
                 <h4>Launch Date</h4>
                 <p>Aug 1, 2024</p>
               </div>

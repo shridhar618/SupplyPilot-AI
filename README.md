@@ -43,16 +43,23 @@ The objective is
 supplypilot-ai/
 ├── README.md
 ├── docker-compose.yml
-├── Makefile
 ├── docs/
-├── src/
-│   ├── backend/          # FastAPI backend
-│   ├── frontend/         # React frontend
-│   ├── data-engineering/ # Data ingestion pipelines
-│   ├── ml-models/        # Machine learning models
-│   └── infra/            # Infrastructure as code
-├── tests/
-└── requirements/
+├── services/                 # Microservices
+│   ├── api-gateway/
+│   ├── collaboration-workflow/
+│   ├── data-ingestion/
+│   ├── demand-forecasting/
+│   ├── inventory-optimization/
+│   ├── product-catalog/
+│   ├── promotion-pricing/
+│   ├── supply-chain-resilience/
+│   ├── user-management/
+│   ├── data-warehouse/
+│   ├── explainable-ai/
+│   └── monitoring-alerting/
+├── shared/                   # Shared code (database models, utilities)
+├── frontend/                 # React frontend
+└── tests/                    # Unit and integration tests
 ```
 
 ## Technology Stack
@@ -71,50 +78,46 @@ supplypilot-ai/
 ### Frontend
 - **Library**: React 18+
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui
-- **State Management**: TanStack Query (React Query)
+- **Styling**: Tailwind CSS
+- **State Management**: React Query (TanStack Query)
 - **Forms**: React Hook Form
 - **Charts**: Recharts
 - **Animations**: Framer Motion
 - **Icons**: Lucide Icons
-- **State Management**: Zustand / Redux Toolkit
 - **Routing**: React Router v6
 
 ### Data Engineering
-- **ETL**: Apache Airflow / Prefect
-- **Stream Processing**: Apache Kafka Streams / Apache Flink
-- **Data Warehouse**: Snowflake / Amazon Redshift / PostgreSQL
-- **Data Catalog**: Apache Atlas / AWS Glue
-- **Data Quality**: Great Expectations
-- **Orchestration**: Kubernetes
+- **ETL**: Custom pipelines (can be extended with Airflow/Prefect)
+- **Stream Processing**: Apache Kafka (integrated)
+- **Data Warehouse**: PostgreSQL (can be extended to Snowflake/Redshift)
+- **Data Catalog': Simple implementation (can be extended)
+- **Data Quality': Basic validation (can be extended with Great Expectations)
+- **Orchestration': Docker Compose (can be extended to Kubernetes)
 
 ### Machine Learning
 - **Frameworks**: PyTorch, TensorFlow, Scikit-learn
-- **Models**: Prophet, XGBoost, LightGBM, CatBoost, LSTM, GRU
-- **Model Serving**: TorchServe, TensorFlow Serving, BentoML
-- **Experiment Tracking**: MLflow, Weights & Biases
-- **Explainability**: SHAP, LIME
-- **Feature Store**: Feast
-- **Model Monitoring**: Evidently AI, WhyLabs
+- **Models**: Prophet, XGBoost, LSTM, ARIMA
+- **Model Serving': REST APIs (can be extended with BentoML/TensorFlow Serving)
+- **Experiment Tracking': MLflow (can be extended)
+- **Explainability': SHAP (integrated in collaboration service)
+- **Feature Store': Simple implementation (can be extended with Feast)
+- **Model Monitoring': Basic metrics (can be extended with Evidently AI)
 
 ### DevOps & Infrastructure
 - **Containerization**: Docker
-- **Orchestration**: Kubernetes (EKS/AKS/GKE)
-- **CI/CD**: GitHub Actions
-- **Infrastructure as Code**: Terraform
-- **Service Mesh**: Istio / Linkerd
-- **API Gateway**: Kong / AWS API Gateway
-- **Observability**: OpenTelemetry, Jaeger, Prometheus, Grafana
-- **Security**: HashiCorp Vault, AWS KMS
+- **Orchestration**: Docker Compose (development), Kubernetes (production)
+- **CI/CD': GitHub Actions (can be added)
+- **Infrastructure as Code': Terraform (can be added)
+- **Service Mesh': None (can be added with Istio/Linkerd)
+- **API Gateway': Custom FastAPI gateway (can be extended with Kong/AWS API Gateway)
+- **Observability': Basic logging and metrics (can be extended with OpenTelemetry, Jaeger, Prometheus, Grafana)
+- **Security': JWT-based authentication (can be extended with HashiCorp Vault, AWS KMS)
 
 ## Getting Started
 ### Prerequisites
 - Docker and Docker Compose
 - Node.js 18+ and npm/yarn/pnpm
-- Python 3.11+ and poetry/pip
-- PostgreSQL
-- Redis
-- Kafka (optional for development)
+- Python 3.11+ and poetry/pip (optional, as we use Docker)
 
 ### Installation
 1. Clone the repository:
@@ -123,49 +126,49 @@ supplypilot-ai/
    cd supplypilot-ai
    ```
 
-2. Install backend dependencies:
+2. (Optional) Install backend dependencies for development:
    ```bash
-   cd src/backend
-   poetry install
-   # or pip install -r requirements.txt
+   # For each service, you can install dependencies individually
+   # Example for demand-forecasting service:
+   cd services/demand-forecasting
+   pip install -r requirements.txt
+   cd ..
    ```
+   But note: we use Docker for running services, so this step is optional for development.
 
 3. Install frontend dependencies:
    ```bash
-   cd ../frontend
+   cd frontend
    npm install
    # or yarn install
+   cd ..
    ```
 
-4. Set up environment variables:
+4. Set up environment variables (optional, as we use docker-compose with defaults):
    ```bash
-   cp .env.example .env
+   # The docker-compose.yml already sets default values for development
+   # To override, create a .env file in the root directory
+   cp .env.example .env   # if you have an example file
    # Edit .env with your configuration
    ```
 
-5. Initialize the database:
+5. Start the development stack:
    ```bash
-   cd ../backend
-   alembic upgrade head
-   ```
-
-6. Start the development stack:
-   ```bash
-   cd ..
    docker-compose up -d
    ```
 
-7. Start the backend development server:
-   ```bash
-   cd src/backend
-   uvicorn main:app --reload --host 0.0.0.0 --port 8000
-   ```
+6. Access the services:
+   - API Gateway: http://localhost:8000
+   - Documentation (Swagger UI): http://localhost:8000/docs
+   - Frontend: http://localhost:3000 (if you start the frontend dev server)
+   - Other services on their respective ports (see docker-compose.yml)
 
-8. Start the frontend development server:
+7. Start the frontend development server:
    ```bash
-   cd ../frontend
+   cd frontend
    npm run dev
    # or yarn dev
+   cd ..
    ```
 
 ## Development Approach
@@ -187,6 +190,11 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed system architecture.
 
 ## API Documentation
 API documentation is available at `/docs` when the backend is running.
+Each service has its own documentation:
+- API Gateway: http://localhost:8000/docs
+- Demand Forecasting: http://localhost:8002/docs
+- Data Ingestion: http://localhost:8001/docs
+- etc.
 
 ## Deployment
 See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for deployment instructions.
