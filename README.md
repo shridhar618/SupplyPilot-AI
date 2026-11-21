@@ -1,5 +1,7 @@
 # DemandSense AI
 
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+
 AI-Powered Decision Intelligence Platform for Demand Forecasting and Supply Chain Optimization
 
 ## Tagline
@@ -170,6 +172,14 @@ supplypilot-ai/
    # or yarn dev
    cd ..
    ```
+
+## Environment variables
+
+| Variable | Purpose | Default |
+|---|---|---|
+| `DATABASE_URL` | PostgreSQL connection string used by the services and migrations | a localhost placeholder in each service |
+| `SECRET_KEY` | Signing secret for the user-management and API gateway services. Set your own value | a placeholder in code |
+| `REACT_APP_API_URL` | API gateway URL used by the frontend | `http://localhost:8000/api/v1` |
 
 ## Development Approach
 We follow an iterative development approach:
